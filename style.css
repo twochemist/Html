@@ -1,0 +1,90 @@
+/* style.css — Tienda Nuevas Colecciones */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans';
+  color: #212429;           /* Negro */
+  background: #ffffff;      /* Blanco */
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; font-size: 100%; color: inherit; background: transparent; border: none; cursor: pointer; }
+
+:root {
+  --c-white: #ffffff;
+  --c-black: #212429;
+  --c-muted: #6c6f75;
+  --c-border: #e9eaec;
+  --c-card: #ffffff;
+  --shadow: 0 4px 14px rgba(0,0,0,.06);
+
+  /* Espaciados base: 8/16/32... */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-5: 48px;
+
+  /* Tipografía */
+  --fz-nav: 16px;       /* nav y footer */
+  --fz-title: 32px;     /* título */
+  --fz-card: 14px;      /* tarjetas */
+
+  --radius-xl: 16px;
+  --container: 1280px;  /* ancho diseño */
+}
+
+/* Layout */
+.container { max-width: var(--container); margin-inline: auto; padding-inline: var(--sp-4); }
+@media (max-width: 560px) { .container { padding-inline: var(--sp-2);} }
+
+/* Header / navbar */
+.topbar { position: sticky; top: 0; z-index: 50; background: var(--c-white); border-bottom: 1px solid var(--c-border); }
+.nav { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--sp-2); padding-block: var(--sp-2); font-size: var(--fz-nav); }
+.nav-left { display: flex; align-items: center; gap: var(--sp-2); }
+.burger { width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; }
+.logo { font-weight: 700; letter-spacing: .5px; }
+.nav-links { display: flex; gap: var(--sp-4); justify-content: center; }
+.nav-links a { position: relative; }
+.nav-links a:hover::after { content: ""; position: absolute; left: 0; right: 0; bottom: -10px; height: 2px; background: var(--c-black); }
+.nav-icons { display: flex; align-items: center; gap: var(--sp-3); }
+.icon { width: 24px; height: 24px; }
+
+.mobile-panel { display: none; border-bottom: 1px solid var(--c-border); padding: var(--sp-2) var(--sp-4); }
+.mobile-panel a { display: block; padding: var(--sp-2) 0; }
+
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .mobile-panel { display: none; }
+  .nav.is-open + .mobile-panel { display: block; }
+}
+
+/* Title */
+.page-title { font-size: var(--fz-title); font-weight: 700; margin: var(--sp-5) 0 var(--sp-4); }
+
+/* Grid */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+@media (max-width: 960px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+/* Cards */
+.card { background: var(--c-card); border: 1px solid var(--c-border); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow); transition: transform .18s ease, box-shadow .18s ease; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.10); }
+.card-media { aspect-ratio: 3/4; background: #f6f7f9; width: 100%; object-fit: cover; }
+.card-body { display: flex; justify-content: space-between; align-items: center; padding: var(--sp-3); font-size: var(--fz-card); }
+.card-title { color: var(--c-muted); }
+.card-price { font-weight: 700; }
+
+/* Footer */
+footer { margin-top: var(--sp-5); border-top: 1px solid var(--c-border); background: var(--c-white); font-size: var(--fz-nav); }
+.footer-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); align-items: center; padding: var(--sp-4); }
+.footer-item { display: flex; align-items: center; gap: var(--sp-2); }
+@media (max-width: 960px) { .footer-row { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .footer-row { grid-template-columns: 1fr; } }
+
+/* Accesibilidad */
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
